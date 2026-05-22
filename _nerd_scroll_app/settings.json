@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Nerd Scroll",
-    "version": "0.3.0",
+    "version": "0.5.0",
     "safe_mode": true
   },
   "typing": {
