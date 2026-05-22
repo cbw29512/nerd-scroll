@@ -20,6 +20,7 @@ PROFILES: dict[str, SpeedProfile] = {
     "normal": SpeedProfile("normal", "Normal - human typing speed", TypingSettings(55, 95, 650, True, 0.008)),
     "fast": SpeedProfile("fast", "Fast", TypingSettings(22, 45, 250, True, 0.006)),
     "really_fast": SpeedProfile("really_fast", "Really fast", TypingSettings(8, 18, 90, False, 0.0)),
+    "hyper": SpeedProfile("hyper", "Hyper speed", TypingSettings(2, 5, 20, False, 0.0)),
     "ludicrous": SpeedProfile("ludicrous", "Ludicrous speed", TypingSettings(0, 0, 0, False, 0.0)),
 }
 
@@ -30,7 +31,8 @@ LEGACY_CHOICES = {
     "3": "normal",
     "4": "fast",
     "5": "really_fast",
-    "6": "ludicrous",
+    "6": "hyper",
+    "7": "ludicrous",
 }
 
 
@@ -56,5 +58,6 @@ def menu_lines() -> list[str]:
         "3. Normal - human typing speed",
         "4. Fast",
         "5. Really fast",
-        "6. Ludicrous speed",
+        "6. Hyper speed",
+        "7. Ludicrous speed",
     ]
