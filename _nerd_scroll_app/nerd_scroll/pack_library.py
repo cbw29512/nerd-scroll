@@ -31,7 +31,7 @@ def pack_library_dir() -> Path:
 
 
 def pack_drop_dir(app_root: Path) -> Path:
-    """Return the repo-local folder users can drag packs into."""
+    """Return the folder users can drop packs into."""
     path = app_root / DROP_FOLDER_NAME
     path.mkdir(parents=True, exist_ok=True)
     return path
@@ -43,7 +43,12 @@ def bundled_pack_dir(app_root: Path) -> Path:
 
 
 def seed_bundled_packs(app_root: Path) -> list[PackItem]:
-    """Copy bundled starter packs into the user's saved library once."""
+    """Copy bundled starter packs into the user's saved library.
+
+    Bundled starter packs are official app content, so updated versions should
+    replace older saved copies with the same filename. User-imported packs are
+    still protected by import_pack_file(), which creates unique filenames.
+    """
     seeded: list[PackItem] = []
     try:
         folder = bundled_pack_dir(app_root)
@@ -51,24 +56,36 @@ def seed_bundled_packs(app_root: Path) -> list[PackItem]:
             return seeded
 
         library = pack_library_dir()
-        existing_names = {path.name.lower() for path in library.iterdir() if path.is_file()}
-
         for source in sorted(folder.iterdir()):
             if source.suffix.lower() not in ALLOWED_PACK_EXTENSIONS:
                 continue
-            if source.name.lower() in existing_names:
-                continue
+
             target = library / source.name
-            shutil.copy2(source, target)
-            seeded.append(pack_from_path(target))
+            if should_copy_bundled_pack(source, target):
+                shutil.copy2(source, target)
+                seeded.append(pack_from_path(target))
         return seeded
     except Exception:
         logger.exception("failed to seed bundled packs")
         raise
 
 
+def should_copy_bundled_pack(source: Path, target: Path) -> bool:
+    """Return true when the saved bundled pack is missing or stale."""
+    try:
+        if not target.exists():
+            return True
+        return source.read_text(encoding="utf-8", errors="replace") != target.read_text(
+            encoding="utf-8",
+            errors="replace",
+        )
+    except Exception:
+        logger.exception("failed to compare bundled pack")
+        return True
+
+
 def import_pack_file(source: Path) -> PackItem:
-    """Copy a pack file into the saved pack library."""
+    """Copy a user-selected pack file into the saved pack library."""
     try:
         if source.suffix.lower() not in ALLOWED_PACK_EXTENSIONS:
             raise ValueError(f"Unsupported pack type: {source.suffix}")
@@ -84,7 +101,7 @@ def import_pack_file(source: Path) -> PackItem:
 
 
 def import_drop_folder(app_root: Path) -> list[PackItem]:
-    """Import all supported files from 3_DROP_PACKS_HERE."""
+    """Import all supported files from the pack drop folder."""
     imported: list[PackItem] = []
     try:
         for path in sorted(pack_drop_dir(app_root).iterdir()):
@@ -135,7 +152,7 @@ def pack_from_path(path: Path) -> PackItem:
 
 
 def unique_target_path(target: Path) -> Path:
-    """Avoid overwriting an existing saved pack."""
+    """Avoid overwriting an existing user-imported pack."""
     if not target.exists():
         return target
     for index in range(2, 1000):
