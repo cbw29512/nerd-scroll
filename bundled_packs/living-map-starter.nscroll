@@ -1,0 +1,67 @@
+# title: Living Map Starter
+# recommended_speed: slow
+# category: animated ASCII map
+# creator: Nerd Scroll
+# license: included starter pack
+
+[MAP] parchment grid initialized
+[MAP] ink engine awake
+[MAP] north marker calibrated
+
+FRAME 0001 :: road seed
+
+          N
+          ^
+          |
+     .----+----.
+          |
+          |
+
+[CARTOGRAPHER] road drawn
+[CARTOGRAPHER] terrain unknown beyond line of sight
+
+FRAME 0002 :: village appears
+
+          N
+          ^
+          |
+     .----+----.        /\
+          |            /__\
+       ___|___          ||
+      |  []  |      ====++====
+      |______|
+
+[MAP] village marker added
+[MAP] smoke column detected east of road
+
+FRAME 0003 :: forest wakes
+
+          N
+          ^
+          |
+   ^   .--+--.    ^      /\
+  /|\     |      /|\    /__\
+ /_|_\ ___|___  /_|_\    ||
+      |  []  |       ====++====
+      |______|
+
+[FOREST] tree count increasing
+[FOREST] owl glyph moved when not observed
+
+FRAME 0004 :: dungeon entrance
+
+          N
+          ^
+   ^      |       ^
+  /|\  .--+--.   /|\       /\
+ /_|_\    |     /_|_\     /__\
+      ___|___              ||
+     |  []  |          ====++====
+     |______|              ||
+                         __||__
+                        /  ||  \
+                       /___||___\
+
+[DUNGEON] entrance discovered
+[DUNGEON] stair depth cannot be measured
+[LOOP] ink dries, map returns to road seed
