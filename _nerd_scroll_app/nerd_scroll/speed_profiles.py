@@ -20,7 +20,7 @@ PROFILES: dict[str, SpeedProfile] = {
     "normal": SpeedProfile("normal", "Normal - human typing speed", TypingSettings(55, 95, 650, True, 0.008)),
     "fast": SpeedProfile("fast", "Fast", TypingSettings(22, 45, 250, True, 0.006)),
     "really_fast": SpeedProfile("really_fast", "Really fast", TypingSettings(8, 18, 90, False, 0.0)),
-    "ludicrous": SpeedProfile("ludicrous", "Ludicrous speed", TypingSettings(0, 2, 0, False, 0.0)),
+    "ludicrous": SpeedProfile("ludicrous", "Ludicrous speed", TypingSettings(0, 0, 0, False, 0.0)),
 }
 
 
