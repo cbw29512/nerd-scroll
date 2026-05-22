@@ -1,0 +1,543 @@
+# title: Enterprise Mainframe Operations Vol. 1
+# recommended_speed: normal
+# category: premium mainframe operations ambience
+# creator: Nerd Scroll
+# license: premium pack; personal + streaming use; no resale
+# notes: IBM z/OS-inspired cosmetic scene pack; not affiliated with or endorsed by IBM
+# safety: all code, jobs, datasets, users, messages, and outputs are fictionalized for visual ambience
+
+[PACK] Enterprise Mainframe Operations Vol. 1
+[MODE] scrolling operations console
+[STYLE] JCL / JES2 / SDSF / COBOL / REXX / IDCAMS / C for z/OS / abend triage
+[SAFETY] decorative terminal pack only; nothing is executed
+[NOTE] realistic syntax and message patterns, fictional environment
+
+======================================================================
+SESSION 0001 :: OPERATIONS CONSOLE SIGNON
+======================================================================
+
+  NERD SCROLL ENTERPRISE OPERATIONS CENTER
+  NODE: ZOS1      LPAR: PROD     JES2: ACTIVE     MODE: VISUAL
+
+  TIME  22:14:08
+  DATE  2026.05.22
+  SHIFT NIGHT
+  OPS   SIMULATED
+
+  +--------------------------------------------------------------+
+  | COMMAND ===>                                                 |
+  |                                                              |
+  | F1=HELP  F3=END  F5=RFIND  F8=DOWN  F10=LEFT  F11=RIGHT      |
+  +--------------------------------------------------------------+
+
+[CONSOLE] operator panel painted
+[SYSTEM] JES2 queue snapshot requested
+[DISPLAY] SDSF-style job table warming up
+[SAFETY] no real host connected
+
+======================================================================
+SESSION 0002 :: SDSF-STYLE QUEUE VIEW
+======================================================================
+
+SDSF STATUS DISPLAY ALL CLASSES                        LINE 1-12 (12)
+COMMAND INPUT ===>                                            SCROLL ===> CSR
+
+NP   JOBNAME   JobID     Owner    Prty Queue      C Pos  SAff  ASys Status
+     PAYRLD01  JOB08421  PAYOPS   8    EXECUTION  A 113  ZOS1  ZOS1 ACTIVE
+     CUSTEXT   JOB08422  APPSVC   7    INPUT      B 024  ZOS1  ZOS1 AWAITING
+     VSAMLOAD  JOB08423  BATCH    6    OUTPUT     A 002  ZOS1  ZOS1 HELD
+     DB2REORG  JOB08424  DB2ADM   9    EXECUTION  A 004  ZOS1  ZOS1 ACTIVE
+     CICSLOG   STC08425  CICS     8    EXECUTION  S 001  ZOS1  ZOS1 ACTIVE
+     MQMON     STC08426  MQOPS    8    EXECUTION  S 002  ZOS1  ZOS1 ACTIVE
+     REXXMON   TSU08427  USER01   5    EXECUTION  T 009  ZOS1  ZOS1 ACTIVE
+
+[JES2] queue scan complete
+[SDSF] filters: OWNER=* PREFIX=* DEST=LOCAL
+[OPS] nightly batch window 38 percent complete
+[EASTER] one job is waiting for coffee allocation
+
+======================================================================
+JOB 0003 :: JCL SUBMISSION - PAYROLL EXTRACT
+======================================================================
+
+//PAYRLD01 JOB (ACCT),'PAYROLL EXTRACT',CLASS=A,MSGCLASS=X,
+//             MSGLEVEL=(1,1),NOTIFY=&SYSUID,REGION=0M
+//*
+//*  FICTIONAL NERD SCROLL MAINFRAME PACK
+//*  VISUAL ONLY - DO NOT SUBMIT TO A REAL SYSTEM
+//*
+//JCLLIB   JCLLIB ORDER=(PROD.PROCLIB,UTIL.PROCLIB)
+//SETVARS  SET RUNDATE='20260522'
+//STEP010  EXEC PGM=IEFBR14
+//ALLOC1   DD  DSN=WORK.PAYROLL.EXTRACT.&RUNDATE,
+//             DISP=(NEW,CATLG,DELETE),
+//             UNIT=SYSDA,SPACE=(CYL,(20,10),RLSE),
+//             DCB=(RECFM=FB,LRECL=120,BLKSIZE=0)
+//STEP020  EXEC PGM=IDCAMS,COND=(0,NE,STEP010)
+//SYSPRINT DD  SYSOUT=*
+//INFILE   DD  DSN=PROD.PAYROLL.MASTER,DISP=SHR
+//OUTFILE  DD  DSN=WORK.PAYROLL.EXTRACT.&RUNDATE,DISP=SHR
+//SYSIN    DD  *
+  REPRO INFILE(INFILE) OUTFILE(OUTFILE)
+/*
+
+[SUBMIT] PAYRLD01 accepted by internal reader
+[JES2] $HASP100 PAYRLD01 ON INTRDR
+[ALLOC] work dataset staged
+[IDCAMS] REPRO control cards detected
+[NOTE] dataset names fictionalized
+
+======================================================================
+JOB 0004 :: JES2 MESSAGE STREAM
+======================================================================
+
+$HASP373 PAYRLD01 STARTED - INIT A - CLASS A - SYS ZOS1
+IEF403I PAYRLD01 - STARTED - TIME=22.14.11
+IEF236I ALLOC. FOR PAYRLD01 STEP010
+IEF237I 0A91 ALLOCATED TO ALLOC1
+IEF142I PAYRLD01 STEP010 - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   WORK.PAYROLL.EXTRACT.20260522        CATALOGED
+IEF373I STEP/STEP010 /START 2214
+IEF374I STEP/STEP010 /STOP  2214 CPU    0MIN 00.02SEC SRB 0MIN 00.00SEC
+IEF236I ALLOC. FOR PAYRLD01 STEP020
+IDC0005I NUMBER OF RECORDS PROCESSED WAS 00018432
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0
+IEF142I PAYRLD01 STEP020 - STEP WAS EXECUTED - COND CODE 0000
+IEF404I PAYRLD01 - ENDED - TIME=22.14.22
+$HASP395 PAYRLD01 ENDED - RC=0000
+
+[STATUS] batch extract clean
+[RC] MAXCC=0000
+[OPS] green screen glow level increased
+
+======================================================================
+JOB 0005 :: COBOL PROGRAM - ACCOUNT BALANCE CHECK
+======================================================================
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ACCTBAL.
+       AUTHOR. NERD-SCROLL.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT ACCT-IN ASSIGN TO ACCTIN.
+           SELECT AUDIT-OUT ASSIGN TO AUDOUT.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  ACCT-IN.
+       01  ACCT-REC.
+           05 ACCT-NO              PIC X(12).
+           05 ACCT-TYPE            PIC X(02).
+           05 ACCT-BALANCE         PIC S9(9)V99 COMP-3.
+
+       FD  AUDIT-OUT.
+       01  AUDIT-REC               PIC X(132).
+
+       WORKING-STORAGE SECTION.
+       01  WS-COUNT                PIC 9(09) VALUE ZERO.
+       01  WS-TOTAL                PIC S9(11)V99 COMP-3 VALUE ZERO.
+       01  WS-DISPLAY-TOTAL        PIC -ZZZ,ZZZ,ZZ9.99.
+
+       PROCEDURE DIVISION.
+       0000-MAIN.
+           OPEN INPUT ACCT-IN
+                OUTPUT AUDIT-OUT
+           PERFORM UNTIL 1 = 2
+              READ ACCT-IN
+                 AT END EXIT PERFORM
+                 NOT AT END
+                    ADD 1 TO WS-COUNT
+                    ADD ACCT-BALANCE TO WS-TOTAL
+              END-READ
+           END-PERFORM
+           MOVE WS-TOTAL TO WS-DISPLAY-TOTAL
+           DISPLAY 'ACCOUNTS READ: ' WS-COUNT
+           DISPLAY 'TOTAL BALANCE: ' WS-DISPLAY-TOTAL
+           CLOSE ACCT-IN AUDIT-OUT
+           GOBACK.
+
+[COBOL] source member ACCTBAL displayed
+[COBOL] packed decimal fields detected
+[COBOL] compiler listing requested
+[VISUAL] this is example code, not production code
+
+======================================================================
+JOB 0006 :: COBOL COMPILE LISTING
+======================================================================
+
+//COBOLC   JOB (ACCT),'COBOL COMPILE',CLASS=A,MSGCLASS=X
+//COMPILE  EXEC PGM=IGYCRCTL,PARM='LIST,MAP,RENT,APOST'
+//STEPLIB  DD  DSN=IGY.V6R4M0.SIGYCOMP,DISP=SHR
+//SYSIN    DD  DSN=DEV.COBOL.SOURCE(ACCTBAL),DISP=SHR
+//SYSLIN   DD  DSN=&&LOADSET,UNIT=SYSDA,SPACE=(CYL,(1,1)),DISP=(MOD,PASS)
+//SYSPRINT DD  SYSOUT=*
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))
+//SYSUT2   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))
+//SYSUT3   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))
+//SYSUT4   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))
+
+IGYOS4000-I   COBOL COMPILER OPTIONS IN EFFECT: LIST MAP RENT APOST
+IGYDS1089-S   INVALID NUMERIC DATA WAS DETECTED IN A SIMULATED RECORD
+IGYPS2121-W   PERIOD EXPECTED; ASSUMED BEFORE NEXT PARAGRAPH NAME
+IGYSC0200-I   END OF COMPILATION 1, PROGRAM ACCTBAL, HIGHEST SEVERITY 12
+
+[COMPILE] highest severity: 12
+[TRIAGE] simulated data exception risk flagged
+[COBOL] source listing continues
+[EASTER] compiler asked for a quieter printer
+
+======================================================================
+JOB 0007 :: ABEND TRIAGE - DATA EXCEPTION
+======================================================================
+
+$HASP373 ACCTBALX STARTED - INIT B - CLASS A - SYS ZOS1
+IEF403I ACCTBALX - STARTED - TIME=22.21.04
+CEE3207S The system detected a data exception.
+IEF450I ACCTBALX STEP030 - ABEND=S0C7 U0000 REASON=00000000
+IEA995I SYMPTOM DUMP OUTPUT  SYSTEM COMPLETION CODE=0C7
+        TIME=22.21.18  SEQ=00421  CPU=0000  ASID=003A
+        PSW AT TIME OF ERROR  078D2000   80013F2A  ILC 4  INTC 07
+        ACTIVE MODULE           ACCTBAL
+        OFFSET                  +000013F2
+
+[ABEND] S0C7 data exception simulated
+[CAUSE] packed decimal input visually marked suspect
+[OPS] dump summary routed to SYSOUT
+[SAFE] no actual dump, no actual system
+
+======================================================================
+JOB 0008 :: IDCAMS VSAM DEFINE
+======================================================================
+
+//VSAMDEF  JOB (ACCT),'DEFINE VSAM',CLASS=A,MSGCLASS=X
+//STEP010  EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD *
+  DEFINE CLUSTER -
+    (NAME(PROD.CUST.KSDS) -
+     INDEXED -
+     KEYS(12 0) -
+     RECORDSIZE(120 120) -
+     SHAREOPTIONS(2 3) -
+     VOLUMES(WRK001) -
+     CYLINDERS(20 10)) -
+    DATA(NAME(PROD.CUST.KSDS.DATA)) -
+    INDEX(NAME(PROD.CUST.KSDS.INDEX))
+/*
+
+IDCAMS  SYSTEM SERVICES                                             TIME: 22:24
+IDC0508I DATA ALLOCATION STATUS FOR VOLUME WRK001 IS 0
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0
+
+[VSAM] KSDS cluster definition displayed
+[IDCAMS] MAXCC=0000
+[CATALOG] fictional catalog updated visually
+
+======================================================================
+JOB 0009 :: SORT STEP
+======================================================================
+
+//SORTJOB  JOB (ACCT),'SORT CUSTOMER',CLASS=A,MSGCLASS=X
+//SORT010  EXEC PGM=SORT
+//SYSOUT   DD SYSOUT=*
+//SORTIN   DD DSN=PROD.CUST.TRANSACT,DISP=SHR
+//SORTOUT  DD DSN=WORK.CUST.TRANSACT.SORTED,
+//            DISP=(NEW,CATLG,DELETE),UNIT=SYSDA,
+//            SPACE=(CYL,(50,20),RLSE),
+//            DCB=(RECFM=FB,LRECL=160,BLKSIZE=0)
+//SYSIN    DD *
+  SORT FIELDS=(1,12,CH,A,45,8,PD,D)
+  INCLUDE COND=(20,2,CH,EQ,C'AC')
+  SUM FIELDS=NONE
+/*
+
+WER046A SORT CAPACITY EXCEEDED - SECONDARY SPACE REQUESTED
+ICE201I H RECORD TYPE IS F - DATA STARTS IN POSITION 1
+ICE000I SORT PROGRAM SIMULATION - HIGHEST CONDITION CODE 04
+
+[SORT] record key layout displayed
+[SORT] duplicate suppression requested
+[SPACE] secondary allocation warning simulated
+[OPS] visual tension increased by four columns
+
+======================================================================
+JOB 0010 :: SPACE FAILURE - SB37
+======================================================================
+
+$HASP373 CUSTLOAD STARTED - INIT C - CLASS A - SYS ZOS1
+IEF403I CUSTLOAD - STARTED - TIME=22.27.41
+IEF236I ALLOC. FOR CUSTLOAD LOAD010
+IEC030I B37-04,IFG0554A,CUSTLOAD,LOAD010,SORTOUT,0A92,WRK002,
+        WORK.CUST.TRANSACT.SORTED
+IEF450I CUSTLOAD LOAD010 - ABEND=SB37 U0000 REASON=00000004
+IEF285I   WORK.CUST.TRANSACT.SORTED        DELETED
+IEF404I CUSTLOAD - ENDED - TIME=22.28.02
+$HASP395 CUSTLOAD ENDED - ABEND=SB37
+
+[ABEND] SB37 simulated space failure
+[CAUSE] output dataset ran out of allocated space
+[ACTION] operator note: increase SPACE or reduce output volume
+[EASTER] DASD sighed dramatically
+
+======================================================================
+SESSION 0011 :: REXX OPS HELPER
+======================================================================
+
+/* REXX */
+parse upper arg jobprefix
+if jobprefix = '' then jobprefix = 'PAY'
+say 'NERD SCROLL REXX OPS HELPER'
+say 'SCANNING JOB PREFIX:' jobprefix
+address TSO
+"PROFILE MSGID"
+"LISTDS 'PROD.PAYROLL.MASTER' STATUS"
+if rc <> 0 then do
+  say 'DATASET STATUS CHECK RETURN CODE:' rc
+end
+else do
+  say 'DATASET STATUS CHECK COMPLETE'
+end
+say 'SUBMITTING VISUAL REPORT ONLY'
+exit 0
+
+READY
+TSO LISTDS 'PROD.PAYROLL.MASTER' STATUS
+DATASET PROD.PAYROLL.MASTER IS IN CATALOG SYS1.MCAT
+DATASET STATUS CHECK COMPLETE
+
+[REXX] EXEC displayed
+[TSO] LISTDS-style output simulated
+[RC] REXX return code 0
+[NOTE] no real TSO command ran
+
+======================================================================
+SESSION 0012 :: ISPF PANEL MOCKUP
+======================================================================
+
+---------------------  NERD SCROLL OPS PANEL  ---------------------
+OPTION ===>
+
+  1  JOBS       Review active batch jobs
+  2  DATASETS   Browse fictional dataset inventory
+  3  ABENDS     Review simulated abend queue
+  4  REPORTS    Display nightly close reports
+  5  PACKS      Load premium terminal scenes
+
+Command line examples:
+  S PAYRLD01
+  ? CUSTLOAD
+  LOG
+
+PF1=HELP  PF3=EXIT  PF7=UP  PF8=DOWN  PF12=CANCEL
+
+[ISPF] full-screen panel rendered
+[PANEL] option cursor blinking
+[UI] green-screen nostalgia level: high
+
+======================================================================
+JOB 0013 :: C FOR Z/OS STYLE MODULE
+======================================================================
+
+/* Fictional C module displayed for terminal ambience */
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_REC_LEN 160
+
+int main(void) {
+    char record[MAX_REC_LEN + 1];
+    long count = 0;
+
+    while (fgets(record, sizeof(record), stdin) != NULL) {
+        if (strncmp(record, "HDR", 3) == 0) {
+            printf("HEADER RECORD ACCEPTED\n");
+        }
+        count++;
+    }
+
+    printf("RECORDS PROCESSED: %ld\n", count);
+    return 0;
+}
+
+//CBECLNK JOB (ACCT),'C COMPILE LINK',CLASS=A,MSGCLASS=X
+//CC      EXEC PGM=CCNDRVR,PARM='SOURCE,LIST'
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD DSN=DEV.C.SOURCE(RECFLOW),DISP=SHR
+
+[C] source module displayed
+[LE] Language Environment visual layer active
+[LINK] binder step queued
+
+======================================================================
+JOB 0014 :: BINDER OUTPUT
+======================================================================
+
+IEW2278I B352 INVOCATION PARAMETERS - MAP,LET,LIST,RENT
+IEW2322I 1220  1    INCLUDE SYSLIB(RECFLOW)
+IEW2454W 9203 SYMBOL OPTIONAL_TRACE UNRESOLVED.  MEMBER INCLUDED.
+IEW2646I 4B07 ENTRY POINT NAME IS RECFLOW
+IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE = 04
+
+[BINDER] load module map generated
+[RC] binder return code 04
+[WARN] unresolved optional symbol simulated
+[OPS] warning accepted for visual demo
+
+======================================================================
+JOB 0015 :: DB2 BATCH STEP VISUAL
+======================================================================
+
+//DB2CHK   JOB (ACCT),'DB2 CHECK',CLASS=A,MSGCLASS=X
+//STEP010  EXEC PGM=IKJEFT01,DYNAMNBR=20
+//SYSTSPRT DD SYSOUT=*
+//SYSPRINT DD SYSOUT=*
+//SYSUDUMP DD SYSOUT=*
+//SYSTSIN  DD *
+  DSN SYSTEM(DB2P)
+  RUN PROGRAM(DSNTEP2) PLAN(DSNTEP12) LIB('DB2P.RUNLIB.LOAD')
+  END
+//SYSIN    DD *
+  SELECT COUNT(*) FROM CUSTOMER_ACCT WHERE STATUS = 'ACTIVE';
+/*
+
+DSN SYSTEM(DB2P)
+DSNTEP2 SQL PROCESSOR ENTERED
+SQLCODE = 000, SQLSTATE = 00000
+ACTIVE_CUSTOMERS
+----------------
+        00018432
+
+[DB2] batch query displayed
+[SQL] SQLCODE 000 simulated
+[DATA] customer count fictionalized
+
+======================================================================
+JOB 0016 :: CICS REGION SNAPSHOT
+======================================================================
+
+F CICSLOG,CEMT I TASK
+STATUS: RESULTS - OVERTYPE TO MODIFY
+
+  Tas(000421) Tra(CKBR) Fac(TERM) Sta(RUN) Use(APPSVC) Pri(001)
+  Tas(000422) Tra(PAYQ) Fac(----) Sta(DISPATCHABLE) Use(CICS) Pri(002)
+  Tas(000423) Tra(AUDT) Fac(TERM) Sta(SUSPENDED) Use(AUDIT) Pri(001)
+
+DFHAC2206 05/22/2026 22:34:41 CICSLOG Transaction CKBR attached.
+DFHAC2001 05/22/2026 22:34:42 CICSLOG Transaction CKBR completed normally.
+DFHSM0131 05/22/2026 22:34:44 CICSLOG Storage monitor sample complete.
+
+[CICS] transaction display simulated
+[REGION] online workload pulse visible
+[OPS] no real region attached
+
+======================================================================
+JOB 0017 :: MQ CHANNEL MONITOR
+======================================================================
+
+DISPLAY CHSTATUS(*)
+
+AMQ8417I: Display Channel Status details.
+   CHANNEL(SYSTEM.ADMIN.SVRCONN) CHLTYPE(SVRCONN) STATUS(RUNNING)
+   SUBSTATE(RECEIVE) CONNAME(10.0.0.25) XMITQ( )
+
+AMQ8417I: Display Channel Status details.
+   CHANNEL(APP.PAYROLL.SDR) CHLTYPE(SDR) STATUS(RETRYING)
+   SUBSTATE(RETRY) CONNAME(10.0.0.44) XMITQ(PAYROLL.XMITQ)
+
+[MQ] channel status rendered
+[MQ] one retrying channel adds drama
+[OPS] connection values are private-range placeholders
+
+======================================================================
+JOB 0018 :: OPERATIONS INCIDENT BOARD
+======================================================================
+
++------------------------------------------------------------------------+
+| INCIDENT BOARD                                          NIGHT SHIFT     |
+|------------------------------------------------------------------------|
+| ID      AREA       SEV  SUMMARY                       STATUS            |
+|------------------------------------------------------------------------|
+| INC001  BATCH      3    CUSTLOAD SB37                 SPACE FIX QUEUED   |
+| INC002  COBOL      2    ACCTBAL S0C7                  DATA TRIAGE        |
+| INC003  MQ         4    PAYROLL.SDR RETRYING          MONITORING         |
+| INC004  DB2        5    CHECK COMPLETE SQLCODE 000    CLOSED             |
+| INC005  CICS       5    CKBR COMPLETE NORMAL          CLOSED             |
+|------------------------------------------------------------------------|
+| NEXT ACTION: RERUN AFTER SPACE CHANGE                                  |
++------------------------------------------------------------------------+
+
+[INCIDENT] board assembled
+[OPS] severity sorted low-to-high urgency
+[SHIFT] green-screen operator has snacks now
+
+======================================================================
+JOB 0019 :: RERUN JCL AFTER SPACE CHANGE
+======================================================================
+
+//CUSTLOAD JOB (ACCT),'CUSTOMER LOAD RERUN',CLASS=A,MSGCLASS=X,
+//             MSGLEVEL=(1,1),NOTIFY=&SYSUID,REGION=0M
+//LOAD010  EXEC PGM=SORT
+//SYSOUT   DD SYSOUT=*
+//SORTIN   DD DSN=PROD.CUST.TRANSACT,DISP=SHR
+//SORTOUT  DD DSN=WORK.CUST.TRANSACT.SORTED,
+//            DISP=(NEW,CATLG,DELETE),UNIT=SYSDA,
+//            SPACE=(CYL,(250,100),RLSE),
+//            DCB=(RECFM=FB,LRECL=160,BLKSIZE=0)
+//SYSIN    DD *
+  SORT FIELDS=(1,12,CH,A,45,8,PD,D)
+  INCLUDE COND=(20,2,CH,EQ,C'AC')
+  SUM FIELDS=NONE
+/*
+
+$HASP373 CUSTLOAD STARTED - INIT C - CLASS A - SYS ZOS1
+IEF142I CUSTLOAD LOAD010 - STEP WAS EXECUTED - COND CODE 0000
+IEF404I CUSTLOAD - ENDED - TIME=22.42.10
+$HASP395 CUSTLOAD ENDED - RC=0000
+
+[RERUN] space adjusted
+[RC] condition code 0000
+[OPS] incident INC001 closed
+
+======================================================================
+JOB 0020 :: END-OF-WINDOW DASHBOARD
+======================================================================
+
++------------------------------------------------------------------------+
+| NIGHTLY MAINFRAME WINDOW                              VISUAL SUMMARY    |
+|------------------------------------------------------------------------|
+| PAYRLD01     PAYROLL EXTRACT              RC=0000       COMPLETE       |
+| VSAMDEF      VSAM DEFINE                  RC=0000       COMPLETE       |
+| SORTJOB      CUSTOMER SORT                 RC=0004       WARNED         |
+| CUSTLOAD     CUSTOMER LOAD RERUN           RC=0000       COMPLETE       |
+| DB2CHK       DB2 COUNT CHECK               SQLCODE=000   COMPLETE       |
+| CICSLOG      CICS REGION                   ACTIVE        NORMAL         |
+| MQMON        MQ CHANNEL MONITOR            RETRY SEEN    MONITORED      |
+| ACCTBALX     COBOL DATA CHECK              S0C7          TRIAGED        |
+|------------------------------------------------------------------------|
+| WINDOW RESULT: VISUAL SUCCESS                                           |
++------------------------------------------------------------------------+
+
+[DASHBOARD] nightly window summarized
+[OPS] queue depth returning to normal
+[CONSOLE] green phosphor fade simulated
+
+======================================================================
+SESSION 0021 :: FINAL CONSOLE SCROLLBACK
+======================================================================
+
+22.44.01 ZOS1  IEF404I PAYRLD01 - ENDED - TIME=22.14.22
+22.44.02 ZOS1  IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0
+22.44.03 ZOS1  IEC030I B37-04 SIMULATED SPACE FAILURE RECOVERED
+22.44.04 ZOS1  IEF404I CUSTLOAD - ENDED - TIME=22.42.10
+22.44.05 ZOS1  DFHAC2001 CICSLOG TRANSACTION CKBR COMPLETED NORMALLY
+22.44.06 ZOS1  AMQ8417I DISPLAY CHANNEL STATUS DETAILS
+22.44.07 ZOS1  IEW2008I BINDER PROCESSING COMPLETED RETURN CODE = 04
+22.44.08 ZOS1  IEF404I DB2CHK - ENDED - TIME=22.33.51
+22.44.09 ZOS1  $HASP395 NIGHTWIN ENDED - RC=0000
+
+[SCROLLBACK] realistic operations flow complete
+[LOOP] resetting queue table
+[LOOP] returning to console signon
+[LOOP] no real actions were performed
