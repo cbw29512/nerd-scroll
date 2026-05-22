@@ -1,0 +1,46 @@
+# title: Mainframe Mystery Starter
+# recommended_speed: normal
+# category: retro mainframe ambience
+# creator: Nerd Scroll
+# license: included starter pack
+
+//NERDJS01 JOB (SCROLL),'MYSTERY',CLASS=A,MSGCLASS=X
+//STEP001  EXEC PGM=GLYPHMAP
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+
+[IPL] vintage terminal session restored
+[JES2] spool queue warming
+[COBOL] WORKING-STORAGE initialized
+[WARN] archive tape label unreadable
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. MYSTERY.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-DOOR-STATUS      PIC X(06) VALUE 'LOCKED'.
+       01  WS-SHADOW-COUNT     PIC 9(03) VALUE 007.
+       PROCEDURE DIVISION.
+           DISPLAY 'OPENING ARCHIVE DRAWER 13'.
+           DISPLAY 'DO NOT TRUST THE GREEN SCREEN'.
+           STOP RUN.
+
+[JES2] executing batch step 001
+[SYSOUT] OPENING ARCHIVE DRAWER 13
+[SYSOUT] DO NOT TRUST THE GREEN SCREEN
+[SCAN] cabinet temperature falling
+[SCAN] operator badge detected: UNKNOWN
+
++------------------------------------------------+
+|  ARCHIVE VAULT 13                              |
+|                                                |
+|  [01] PAYROLL_1979       CLEAN                 |
+|  [02] NIGHTSHIFT_LOG     CORRUPT               |
+|  [03] BASEMENT_MAP       PARTIAL               |
+|  [04] DOOR_AUDIO         THREE KNOCKS          |
+|                                                |
++------------------------------------------------+
+
+[HOLD] batch paused for impossible timestamp
+[NOTE] system clock reports tomorrow
+[LOOP] returning archive pointer to first record
