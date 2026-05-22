@@ -1,0 +1,10 @@
+{
+  "zip": "/mnt/data/NerdScroll-v0.3-two-step.zip",
+  "version": "0.3.0-two-step",
+  "test_return_code": 0,
+  "smoke_return_code": 0,
+  "python_files_over_150_lines": {},
+  "launcher": "2_RUN_NERD_SCROLL.bat",
+  "drop_folder": "1_DROP_TEXT_FILE_HERE",
+  "file_count": 30
+}

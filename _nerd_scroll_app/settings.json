@@ -1,0 +1,31 @@
+{
+  "app": {
+    "name": "Nerd Scroll",
+    "version": "0.3.0",
+    "safe_mode": true
+  },
+  "typing": {
+    "base_delay_ms": 25,
+    "jitter_ms": 45,
+    "line_pause_ms": 400,
+    "enable_typos": true,
+    "typo_chance": 0.015
+  },
+  "source": {
+    "loop_forever": true,
+    "skip_empty_lines": false,
+    "allowed_extensions": [".txt", ".log", ".md", ".py", ".js", ".ts", ".ps1", ".json", ".sql", ".html", ".css", ".xml", ".yaml", ".yml", ".cbl", ".jcl"]
+  },
+  "drop_zone": {
+    "folder_path": "1_DROP_TEXT_FILE_HERE",
+    "pick_mode": "newest",
+    "recursive": false
+  },
+  "display": {
+    "theme": "green",
+    "show_line_numbers": true,
+    "show_loop_message": true,
+    "clear_screen_on_start": true,
+    "show_source_file": true
+  }
+}

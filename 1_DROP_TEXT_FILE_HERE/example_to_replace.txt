@@ -1,0 +1,19 @@
+# Example file for Nerd Scroll
+# You can delete this file and drop in your own.
+
+def run_local_audit():
+    try:
+        result = {"status": "PASS", "external_actions": False}
+        print(result)
+    except Exception as exc:
+        raise RuntimeError("Audit failed") from exc
+
+SELECT page_slug, score
+FROM seo_growth_opportunities
+WHERE high_priority = 0
+ORDER BY score ASC;
+
+The terminal does not hurry.
+It reads.
+It types.
+It loops.
