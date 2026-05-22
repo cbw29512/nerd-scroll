@@ -17,13 +17,13 @@ echo.
 
 where python >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
-    python "_nerd_scroll_app\start_nerd_scroll.py" --root "%~dp0" --drop-zone
+    python "_nerd_scroll_app\start_nerd_scroll.py" --root . --drop-zone
     goto done
 )
 
 where py >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
-    py "_nerd_scroll_app\start_nerd_scroll.py" --root "%~dp0" --drop-zone
+    py "_nerd_scroll_app\start_nerd_scroll.py" --root . --drop-zone
     goto done
 )
 
