@@ -1,0 +1,113 @@
+# title: Book Scroll Starter
+# recommended_speed: slow
+# category: reading mode example
+# creator: Nerd Scroll
+# license: included starter pack
+# render_mode: scroll
+# notes: demonstrates how books, stories, scripture, notes, and long text can scroll cleanly
+
+
+                              NERD SCROLL READING MODE
+
+                         A quiet example for books and long text
+
+
+----------------------------------------------------------------------
+CHAPTER 1
+----------------------------------------------------------------------
+
+The screen does not have to look like code.
+
+Sometimes the best Nerd Scroll pack is simply a readable passage that moves
+slowly enough for a person to follow. A public-domain book, a journal, a
+study note, a Bible chapter, a poem you wrote yourself, or a campfire story
+can all become part of the same cinematic terminal flow.
+
+The trick is spacing.
+
+Do not paste one giant wall of text.
+
+Give the reader room.
+
+Give the eye a place to rest.
+
+Use chapter cards.
+Use short paragraphs.
+Use blank lines.
+Use gentle section breaks.
+
+----------------------------------------------------------------------
+HOW TO BUILD A BOOK PACK
+----------------------------------------------------------------------
+
+1. Start with metadata at the top.
+
+2. Add a chapter title.
+
+3. Break long paragraphs into smaller pieces.
+
+4. Keep the lines narrow enough for a terminal window.
+
+5. Use slow or normal speed.
+
+6. End with a clear loop marker if you want it to repeat.
+
+----------------------------------------------------------------------
+EXAMPLE PASSAGE
+----------------------------------------------------------------------
+
+The old machine waited beside the desk, quiet except for the soft pulse of
+its cursor. It did not shout for attention. It did not flash a thousand
+buttons. It simply opened a black window and began to move text across the
+screen like a lantern moving through a dark hallway.
+
+Line by line, the page became motion.
+
+A book became atmosphere.
+
+A note became a display.
+
+A story became something you could leave running beside you while you worked.
+
+----------------------------------------------------------------------
+USE CASES
+----------------------------------------------------------------------
+
+Public-domain books
+Personal writing
+Study notes
+Tabletop campaign lore
+Relaxing bedtime text
+Scripture passages from a license-safe source
+Poetry
+Affirmation cards
+Lecture notes
+Story drafts
+
+----------------------------------------------------------------------
+STYLE IDEAS
+----------------------------------------------------------------------
+
+For a mystery book, add case-file dividers.
+
+For fantasy lore, add map borders.
+
+For scripture, keep the source wording exact and make the text easy to read.
+
+For a study pack, add definitions and section markers.
+
+For a bedtime pack, use slow speed and extra spacing.
+
+----------------------------------------------------------------------
+LOOP
+----------------------------------------------------------------------
+
+This is the simplest kind of Nerd Scroll pack:
+
+words
+space
+rhythm
+motion
+
+When this reaches the end, it can begin again like a book left open under a
+small green lamp.
