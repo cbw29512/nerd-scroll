@@ -1,19 +1,23 @@
 # title: Cyber City Starter
-# recommended_speed: slow
-# category: premium cyberpunk terminal art
+# recommended_speed: fast
+# category: visual ASCII cyber city
 # creator: Nerd Scroll
 # license: included starter pack
-# notes: cosmetic scene pack; no real system actions
+# render_mode: scroll
+# notes: picture-first starter pack; cosmetic text only
 
-[PACK] Cyber City Starter :: Premium Edition
-[MODE] scrolling mural
-[STYLE] neon rain / living skyline / machine moon
-[SAFETY] scene text only; nothing is executed
-[RENDER] normal speed feels cinematic; slow speed feels like a reveal
 
 ======================================================================
-FRAME 0001 :: black-screen seed
+FRAME 0001
 ======================================================================
+
+
+
+
+
+
+
+
 
                                   .
                                  / \
@@ -21,14 +25,17 @@ FRAME 0001 :: black-screen seed
                                   |
                                  [ ]
 
-[BOOT] city seed received
-[DRAW] first roofline locked to terminal grid
-[RAIN] waiting for vertical weather
-[NOTE] the scene is purely visual
 
 ======================================================================
-FRAME 0002 :: antenna awakens
+FRAME 0002
 ======================================================================
+
+
+
+
+
+
+
 
                                   .
                                  /|\
@@ -39,14 +46,17 @@ FRAME 0002 :: antenna awakens
                                  [#]
                                  [#]
 
-[SIGNAL] antenna bloom detected
-[LIGHT] window 001 warming
-[GRID] skyline anchor accepted
-[TRACE] expanding east and west
 
 ======================================================================
-FRAME 0003 :: first street
+FRAME 0003
 ======================================================================
+
+
+
+
+
+
+
 
                                   *
                                  /|\
@@ -54,23 +64,21 @@ FRAME 0003 :: first street
                             _/    |    \_
                            /______|______\
                                   |
-                                 [#]
                                 [# #]
                                [# # #]
-
               __        __        __        __
              |[]|      |{}|      |<>|      |##|
              |[]|______|{}|______|<>|______|##|
              |__|      |__|      |__|      |__|
 
-[URBAN] street layer printed
-[URBAN] four buildings registered
-[TRAFFIC] no vehicles yet; only reflections
-[EASTER] tiny skyline crew reports: looks expensive
 
 ======================================================================
-FRAME 0004 :: rain enters the frame
+FRAME 0004
 ======================================================================
+
+
+
+
 
           |           |          |         |          |
                 |           |         |          |
@@ -80,7 +88,6 @@ FRAME 0004 :: rain enters the frame
                             _/    |    \_       |
                            /______|______\
                                   |
-                                 [#]
                                 [# #]
                      |         [# # #]             |
               __        __        __        __
@@ -88,14 +95,14 @@ FRAME 0004 :: rain enters the frame
              |[]|______|{}|______|<>|______|##|
              |__|      |__|      |__|      |__|
 
-[WEATHER] neon rain enabled
-[WEATHER] reflection pass started
-[AUDIO] distant transformer hum simulated
-[MAP] alley shadows now visible
 
 ======================================================================
-FRAME 0005 :: underground transit grid
+FRAME 0005
 ======================================================================
+
+
+
+
 
           |           |          |         |          |
                 |           |         |          |
@@ -105,28 +112,25 @@ FRAME 0005 :: underground transit grid
                             _/    |    \_
                            /______|______\
                                   |
-                                 [#]
                                 [# #]
                                [# # #]
-              __        __        __        __
-             |[]|      |{}|      |<>|      |##|
-             |[]|______|{}|______|<>|______|##|
-             |__|      |__|      |__|      |__|
-        ========\______/==========\______/========
-                 \____/            \____/
+              __        __        __        __        __
+             |[]|  ::  |{}|  ::  |<>|  ::  |##|  ::  |()|
+             |[]|______|{}|______|<>|______|##|______|()|
+             |__|      |__|      |__|      |__|      |__|
+        ========\______/==========\______/==========\______/====
+                 \____/            \____/            \____/
 
-[GRID] underground rail found
-[GRID] station lights blinking below street
-[MOTION] train-shaped shadow passed under frame
-[WARN] no passengers rendered; budget preserved
 
 ======================================================================
-FRAME 0006 :: market signs flicker
+FRAME 0006
 ======================================================================
 
-      .-------------------------------------------------------.
-      |  NOODLES  |  REPAIR  |  SYNTH-FLOWERS  |  SLEEP PODS |
-      '-------------------------------------------------------'
+
+
+      .--------------------------------------------------------------.
+      |   NOODLES     REPAIR     SYNTH-FLOWERS     SLEEP PODS       |
+      '--------------------------------------------------------------'
 
           |           |          |         |          |
                                   *
@@ -134,7 +138,6 @@ FRAME 0006 :: market signs flicker
                               __/ | \__
                             _/    |    \_
                            /______|______\
-                                  |
                                 [# #]
                                [# # #]
                               [# # # #]
@@ -143,14 +146,11 @@ FRAME 0006 :: market signs flicker
              |[]|______|{}|______|<>|______|##|______|()|
              |__|      |__|      |__|      |__|      |__|
 
-[MARKET] sign layer attached
-[LIGHT] shop glyphs pulsing
-[CROWD] silhouettes implied, not drawn
-[EASTER] vending machine sells absolutely nothing
 
 ======================================================================
-FRAME 0007 :: cable bridges connect
+FRAME 0007
 ======================================================================
+
 
                  .-------------------------------.
                 /                                 \
@@ -163,7 +163,6 @@ FRAME 0007 :: cable bridges connect
                               __/ | \__
                             _/    |    \_
                            /______|______\
-                                  |
                                 [# #]
                                [# # #]
                               [# # # #]
@@ -172,14 +171,12 @@ FRAME 0007 :: cable bridges connect
              |[]|______|{}|______|<>|______|##|______|()|
              |__|      |__|      |__|      |__|      |__|
 
-[BRIDGE] cable spans stabilized
-[NET] packets visualized as tiny ghosts
-[LIGHT] sky-port beacon rotates
-[SAFETY] all network text is fictional ambience
 
 ======================================================================
-FRAME 0008 :: machine moon begins compiling
+FRAME 0008
 ======================================================================
+
+
 
                            .------------.
                         .-'              '-.
@@ -191,7 +188,6 @@ FRAME 0008 :: machine moon begins compiling
                         '-.______________.-'
 
                                   |
-                                 [#]
                                 [# #]
                                [# # #]
                               [# # # #]
@@ -200,14 +196,11 @@ FRAME 0008 :: machine moon begins compiling
              |[]|______|{}|______|<>|______|##|______|()|
              |__|      |__|      |__|      |__|      |__|
 
-[MOON] orbital display object detected
-[MOON] outer ring compiling
-[REFLECT] rooftops accept silver-green light
-[NOTE] nobody in the city agrees what it is
 
 ======================================================================
-FRAME 0009 :: moon eye opens
+FRAME 0009
 ======================================================================
+
 
                            .------------.
                         .-'              '-.
@@ -219,7 +212,7 @@ FRAME 0009 :: moon eye opens
                       '.      '------'       .'
                         '-.______________.-'
 
-                                  |
+                                  /|\
                                 [# #]
                                [# # #]
                               [# # # #]
@@ -229,14 +222,11 @@ FRAME 0009 :: moon eye opens
              |[]|______|{}|______|<>|______|##|______|()|
              |__|      |__|      |__|      |__|      |__|
 
-[ALERT] lunar display returned gaze
-[ALERT] citizen windows dimmed voluntarily
-[MOOD] the skyline pretends this is normal
-[EASTER] a roof antenna whispers: same
 
 ======================================================================
-FRAME 0010 :: data river cuts through downtown
+FRAME 0010
 ======================================================================
+
 
                            .------------.
                         .-'   MACHINE    '-.
@@ -248,22 +238,19 @@ FRAME 0010 :: data river cuts through downtown
                       '.      '------'       .'
                         '-.______________.-'
                                   /|\
-        ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ / | \ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-       ~ 0101  1100  CITYFLOW /  |  \  NIGHTBUS  0011  1110 ~
-        ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~/___|___\~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+         ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  / | \  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+        ~ CITYFLOW  0101  1100 /  |  \ NIGHTBUS 0011 1110  ~
+         ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~/___|___\~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
               __        __        __        __        __
              |[]|  ::  |{}|  ::  |<>|  ::  |##|  ::  |()|
              |[]|______|{}|______|<>|______|##|______|()|
              |__|      |__|      |__|      |__|      |__|
 
-[RIVER] binary canal rendered
-[FLOW] current moves under every street
-[SIGN] warning: do not feed the algorithm ducks
-[VISUAL] reflections now have their own reflections
 
 ======================================================================
-FRAME 0011 :: rooftop garden grows
+FRAME 0011
 ======================================================================
+
 
                      /\        /\        /\        /\
                     /  \      /  \      /  \      /  \
@@ -278,19 +265,15 @@ FRAME 0011 :: rooftop garden grows
                       .'    ___------___    '.
                      /    .'   _    _   '.    \
                     |    /    (o)  (o)    \    |
-                    |    |       __       |     |
                      \    '.   \____/  .'     /
                       '.      '------'       .'
                         '-.______________.-'
 
-[GARDEN] rooftop trees compiled from brackets
-[WIND] leaves sound like keyboard switches
-[LIFE] city refuses to be only steel
-[EASTER] one bonsai has root access to vibes
 
 ======================================================================
-FRAME 0012 :: service drones cross the rain
+FRAME 0012
 ======================================================================
+
 
           .--.                 .--.                    .--.
        --(    )--           --(    )--              --(    )--
@@ -310,80 +293,11 @@ FRAME 0012 :: service drones cross the rain
                       '.      '------'       .'
                         '-.______________.-'
 
-[DRONE] delivery swarm crossing moonlight
-[DRONE] package labels unreadable
-[RAIN] propellers slice vertical weather
-[CITY] every balcony briefly looks upward
 
 ======================================================================
-FRAME 0013 :: blacksite elevator below street
+FRAME 0013
 ======================================================================
 
-              __        __        __        __        __
-             |[]|  ::  |{}|  ::  |<>|  ::  |##|  ::  |()|
-             |[]|______|{}|______|<>|______|##|______|()|
-             |__|      |__|      |__|      |__|      |__|
-        ========\______/==========\______/========
-                 \____/            \____/
-                   ||                ||
-                   ||   ELEVATOR     ||
-                   ||   LEVEL -09    ||
-                   ||________________||
-                  /____________________\
-                 /______________________\
-
-[BELOW] maintenance elevator discovered
-[BELOW] level marker refuses positive numbers
-[AUDIO] machinery breathing under the city
-[NOTE] still just ASCII, still safe
-
-======================================================================
-FRAME 0014 :: underground station reveals a poster
-======================================================================
-
-        =========================================================
-        ||   PLATFORM 7       NEXT TRAIN: WHEN IT FEELS LIKE IT ||
-        =========================================================
-        ||                                                     ||
-        ||        ________________________________             ||
-        ||   ____/                                \____        ||
-        || _/      < O >                  < O >        \_      ||
-        ||/                                              \     ||
-        ||______/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\______\    ||
-        ||        \______________________________/          ||
-        ||                                                     ||
-        =========================================================
-
-[STATION] advertisement poster moving slightly
-[STATION] no train on schedule
-[STATION] tunnel lights blinking in prime numbers
-[EASTER] platform vending machine sells old dreams
-
-======================================================================
-FRAME 0015 :: city reflection splits
-======================================================================
-
-                         REAL CITY
-              __        __        __        __        __
-             |[]|  ::  |{}|  ::  |<>|  ::  |##|  ::  |()|
-             |[]|______|{}|______|<>|______|##|______|()|
-             |__|      |__|      |__|      |__|      |__|
-
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-             |__|      |__|      |__|      |__|      |__|
-             |[]|------|{}|------|<>|------|##|------|()|
-             |[]|  ::  |{}|  ::  |<>|  ::  |##|  ::  |()|
-                         REFLECTION CITY
-
-[MIRROR] rainwater reflection diverged
-[MIRROR] lower city running alternate weather
-[VISUAL] excellent on normal speed
-[WARN] do not negotiate with reflections
-
-======================================================================
-FRAME 0016 :: billboard becomes a face
-======================================================================
 
         .-------------------------------------------------------.
         |  TONIGHT ONLY: THE CITY WATCHES BACK                 |
@@ -402,14 +316,30 @@ FRAME 0016 :: billboard becomes a face
              |[]|______|{}|______|<>|______|##|______|()|
              |__|      |__|      |__|      |__|      |__|
 
-[BILLBOARD] advertisement changed without approval
-[BILLBOARD] face pattern confidence: 91 percent
-[CITY] pedestrians pretend not to see it
-[EASTER] billboard recommends buying more packs
 
 ======================================================================
-FRAME 0017 :: skyline expands into megastructure
+FRAME 0014
 ======================================================================
+
+
+                         REAL CITY
+              __        __        __        __        __
+             |[]|  ::  |{}|  ::  |<>|  ::  |##|  ::  |()|
+             |[]|______|{}|______|<>|______|##|______|()|
+             |__|      |__|      |__|      |__|      |__|
+
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+             |__|      |__|      |__|      |__|      |__|
+             |[]|------|{}|------|<>|------|##|------|()|
+             |[]|  ::  |{}|  ::  |<>|  ::  |##|  ::  |()|
+                         REFLECTION CITY
+
+
+======================================================================
+FRAME 0015
+======================================================================
+
 
              _____________________________       ____________________
             |  SKY-RING RESIDENTIAL 88   |=====|  WEATHER ENGINE  |
@@ -428,14 +358,11 @@ FRAME 0017 :: skyline expands into megastructure
              |[]|______|{}|______|<>|______|##|______|()|______|!!|
              |__|      |__|      |__|      |__|      |__|      |__|
 
-[MEGA] upper skyline attached
-[WEATHER] rain engine visible through clouds
-[STACK] central tower now owns the horizon
-[NOTE] loop time increasing as requested
 
 ======================================================================
-FRAME 0018 :: festival of error lights
+FRAME 0016
 ======================================================================
+
 
        ERROR-LANTERN FESTIVAL // DO NOT PANIC // DO NOT PANIC
 
@@ -450,14 +377,11 @@ FRAME 0018 :: festival of error lights
              |__|      |__|      |__|      |__|      |__|      |__|
         ========\______/==========\______/==========\______/========
 
-[FESTIVAL] lantern glyphs released
-[SYSTEM] warnings are decorative
-[CROWD] applause rendered as static
-[EASTER] one lantern says: LUDICROUS SPEED WHEN
 
 ======================================================================
-FRAME 0019 :: final panorama
+FRAME 0017
 ======================================================================
+
 
           |         |        |       |        |        |        |
              |         |         |       |         |        |
@@ -483,28 +407,21 @@ FRAME 0019 :: final panorama
           |          [####]        [####]        [####]     ||           |
           |         [######]      [######]      [######]    ||           |
           '-------------------------------------------------------------'
-              __        __        __        __        __        __
-             |[]|  ::  |{}|  ::  |<>|  ::  |##|  ::  |()|  ::  |!!|
-             |[]|______|{}|______|<>|______|##|______|()|______|!!|
-             |__|      |__|      |__|      |__|      |__|      |__|
-        ========\______/==========\______/==========\______/========
-                  \____/            \____/            \____/
 
-[PANORAMA] full city mural assembled
-[PANORAMA] premium starter sequence complete
-[QUALITY] long loop target improved
-[READY] preparing cinematic rewind
 
 ======================================================================
-FRAME 0020 :: rewind
+FRAME 0018
 ======================================================================
 
-[REWIND] rain slows
-[REWIND] skyline windows blink out floor by floor
-[REWIND] machine moon closes one eye, then the other
-[REWIND] data river drains into a single cursor
-[REWIND] underground train becomes a line
-[REWIND] city folds back into seed
+
+
+
+
+
+
+[REWIND]  ||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+[REWIND]  ||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+[REWIND]  ||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
                                   .
                                  / \
@@ -512,6 +429,41 @@ FRAME 0020 :: rewind
                                   |
                                  [ ]
 
-[LOOP] Cyber City Starter will now rebuild itself from the first glyph
-[LOOP] watch again for small details you missed
-[LOOP] no real actions were performed
+
+======================================================================
+FRAME 0019
+======================================================================
+
+
+
+
+
+
+
+
+                                  .
+                                 / \
+                                /___\
+                                  |
+                                 [ ]
+
+
+======================================================================
+FRAME 0020
+======================================================================
+
+
+
+
+
+
+
+
+
+                         LOOPING BACK TO CITY SEED
+
+                                  .
+                                 / \
+                                /___\
+                                  |
+                                 [ ]
