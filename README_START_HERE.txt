@@ -1,33 +1,48 @@
-NERD SCROLL - TWO STEP EDITION
+NERD SCROLL - WINDOWS GUI EDITION
 
-This tool makes your command line look like it is typing your text, code, logs, or notes.
+WHAT IT DOES
+
+Nerd Scroll turns pasted text, code, logs, or notes into a cinematic terminal typing stream.
 
 HOW TO USE
 
-STEP 1:
-Open this folder:
+1. Double-click:
 
-    1_DROP_TEXT_FILE_HERE
+   2_RUN_NERD_SCROLL.bat
 
-Drop in a .txt, .log, .md, .py, .js, .ts, .ps1, .json, .sql, .html, .css, .xml, .yaml, .yml, .cbl, or .jcl file.
+2. Paste text into the window.
 
-STEP 2:
-Double-click this file:
+3. Pick speed:
+   - Super slow
+   - Slow
+   - Normal - human typing speed
+   - Fast
+   - Really fast
+   - Ludicrous speed
 
-    2_RUN_NERD_SCROLL.bat
+4. Click Start Nerd Scroll.
 
-That is it.
+5. A command-line window opens and types your text forever.
 
-STOP:
-Press Ctrl+C in the command window.
+STOP
 
-SAFETY:
-Nerd Scroll only reads your dropped file as text.
-It does not execute code.
+Press Ctrl+C in the command-line window, or close the command-line window.
+
+INSTALL DESKTOP ICON
+
+Double-click:
+
+   INSTALL_DESKTOP_SHORTCUT.bat
+
+SAFETY
+
+Nerd Scroll reads pasted/dropped text only.
+It does not execute pasted code.
 It does not use the internet.
 It does not run Git, Docker, installs, publishing, payments, or credentials.
 
-CUSTOMIZE:
-Advanced settings live here:
+LEGACY MODE
 
-    _nerd_scroll_app\settings.json
+The old drop-zone version is still available:
+
+   RUN_DROP_ZONE_LEGACY.bat
