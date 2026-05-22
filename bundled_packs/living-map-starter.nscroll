@@ -1,67 +1,449 @@
 # title: Living Map Starter
 # recommended_speed: slow
-# category: animated ASCII map
+# category: premium animated ASCII map
 # creator: Nerd Scroll
 # license: included starter pack
+# notes: fictional cartography scene; cosmetic text only
+
+[PACK] Living Map Starter :: Premium Edition
+[MODE] scrolling cartography mural
+[STYLE] hand-drawn map / moving party marker / hidden dungeon / weather layer
+[SAFETY] scene text only; no real system actions
+[RENDER] slow speed feels like ink drying; normal speed feels like an expedition log
+
+======================================================================
+FRAME 0001 :: compass seed
+======================================================================
+
+                           N
+                           ^
+                           |
+                     W <---+---> E
+                           |
+                           v
+                           S
 
 [MAP] parchment grid initialized
 [MAP] ink engine awake
 [MAP] north marker calibrated
+[CARTOGRAPHER] waiting for first road line
 
-FRAME 0001 :: road seed
+======================================================================
+FRAME 0002 :: first road
+======================================================================
 
-          N
-          ^
-          |
-     .----+----.
-          |
-          |
+                           N
+                           ^
+                           |
+                     W <---+---> E
+                           |
+                           v
+                           S
+
+                     .-----+-----.
+                           |
+                           |
+                           |
 
 [CARTOGRAPHER] road drawn
 [CARTOGRAPHER] terrain unknown beyond line of sight
+[INK] road edges still drying
+[NOTE] map is decorative; no navigation data implied
 
-FRAME 0002 :: village appears
+======================================================================
+FRAME 0003 :: village appears
+======================================================================
 
-          N
-          ^
-          |
-     .----+----.        /\
-          |            /__\
-       ___|___          ||
-      |  []  |      ====++====
-      |______|
+                           N
+                           ^
+                           |
+                     W <---+---> E
+                           |
+                     .-----+-----.
+                           |
+              ___          |             /\
+             | []|         |            /__\
+             |___|      ===+===          ||
+                        village       old mill
 
-[MAP] village marker added
-[MAP] smoke column detected east of road
+[VILLAGE] first structure marked
+[VILLAGE] old mill added east of road
+[SMOKE] tiny chimney trail rendered
+[PARTY] expedition marker not yet visible
 
-FRAME 0003 :: forest wakes
+======================================================================
+FRAME 0004 :: fields and fences
+======================================================================
 
-          N
-          ^
-          |
-   ^   .--+--.    ^      /\
-  /|\     |      /|\    /__\
- /_|_\ ___|___  /_|_\    ||
-      |  []  |       ====++====
-      |______|
+                           N
+                           ^
+                     .-----+-----.
+                           |
+          . . . . .        |        . . . . .
+         .  wheat  .       |       .  barley .
+          . . . . .        |        . . . . .
+              ___          |             /\
+             | []|         |            /__\
+             |___|      ===+===          ||
+                    --- fence road ---
+
+[FARM] field layer painted
+[FARM] fence glyphs attached to village road
+[WIND] crops simulated with punctuation
+[EASTER] scarecrow refuses to face same direction twice
+
+======================================================================
+FRAME 0005 :: forest wakes
+======================================================================
+
+              ^        ^       ^              ^
+             /|\      /|\     /|\            /|\
+            /_|_\    /_|_\   /_|_\          /_|_\
+                           N
+                           ^
+                     .-----+-----.
+              ^            |             ^
+             /|\           |            /|\
+            /_|_\       ===+===        /_|_\
+              ___          |             /\
+             | []|         |            /__\
+             |___|         |             ||
 
 [FOREST] tree count increasing
 [FOREST] owl glyph moved when not observed
+[PATH] deer trail detected west of road
+[MAP] edge shading added
 
-FRAME 0004 :: dungeon entrance
+======================================================================
+FRAME 0006 :: party marker enters
+======================================================================
 
-          N
-          ^
-   ^      |       ^
-  /|\  .--+--.   /|\       /\
- /_|_\    |     /_|_\     /__\
-      ___|___              ||
-     |  []  |          ====++====
-     |______|              ||
-                         __||__
-                        /  ||  \
-                       /___||___\
+              ^        ^       ^              ^
+             /|\      /|\     /|\            /|\
+            /_|_\    /_|_\   /_|_\          /_|_\
+                           N
+                           ^
+                     .-----+-----.
+                           |
+                           |
+                         ( @ )       party marker
+              ___          |             /\
+             | []|      ===+===        /__\
+             |___|         |             ||
 
-[DUNGEON] entrance discovered
+[PARTY] marker initialized
+[PARTY] position: village road
+[LOG] inventory includes rope, lantern, suspicious sandwich
+[EASTER] suspicious sandwich added itself
+
+======================================================================
+FRAME 0007 :: river cuts the map
+======================================================================
+
+              ^        ^       ^              ^
+             /|\      /|\     /|\            /|\
+            /_|_\    /_|_\   /_|_\          /_|_\
+
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      ~      silver river        old stones      ~
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+                           |
+                         ( @ )
+              ___          |             /\
+             | []|      ===+===        /__\
+             |___|         |             ||
+
+[RIVER] water route painted across parchment
+[BRIDGE] old stone crossing detected north-east
+[PARTY] marker waiting at riverbank
+[SOUND] map makes no sound, but you imagined water anyway
+
+======================================================================
+FRAME 0008 :: bridge crossing
+======================================================================
+
+              ^        ^       ^              ^
+             /|\      /|\     /|\            /|\
+            /_|_\    /_|_\   /_|_\          /_|_\
+
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      ~      silver river     [====] crossing   ~
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+                                    |
+                                  ( @ )
+              ___                   |       /\
+             | []|               ===+===   /__\
+             |___|                  |        ||
+
+[BRIDGE] crossing rendered
+[PARTY] marker crossed bridge successfully
+[CHECK] bridge toll: one riddle, paid in confusion
+[MAP] east road unlocked
+
+======================================================================
+FRAME 0009 :: ruined tower
+======================================================================
+
+              ^        ^       ^              ^
+             /|\      /|\     /|\            /|\
+            /_|_\    /_|_\   /_|_\          /_|_\
+
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      ~      silver river     [====] crossing   ~
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+                                    |
+                                  ( @ )
+                                    |
+                          .--------+--------.
+                          |     ruined       |
+                          |      tower       |
+                          |      /\          |
+                          |     /__\         |
+                          |      ||          |
+                          '-----------------'
+
+[RUIN] tower entered map memory
+[RUIN] top floor missing
+[RUIN] shadow points opposite the sun
+[EASTER] tower asks if you brought snacks
+
+======================================================================
+FRAME 0010 :: dungeon entrance discovered
+======================================================================
+
+              ^        ^       ^              ^
+             /|\      /|\     /|\            /|\
+            /_|_\    /_|_\   /_|_\          /_|_\
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      ~      silver river     [====] crossing   ~
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+                                    |
+                                  ( @ )
+                                    |
+                          .--------+--------.
+                          |     ruined       |
+                          |      tower       |
+                          |      /\          |
+                          |     /__\         |
+                          |      ||          |
+                          |    __||__        |
+                          |   /  ||  \       |
+                          |  /___||___\      |
+                          '-----------------'
+
+[DUNGEON] entrance discovered below tower
 [DUNGEON] stair depth cannot be measured
-[LOOP] ink dries, map returns to road seed
+[PARTY] marker paused at threshold
+[MAP] ink darkens around stone doors
+
+======================================================================
+FRAME 0011 :: dungeon layer overlay
+======================================================================
+
+                 SURFACE MAP ABOVE                      DUNGEON BELOW
+
+                  ruined tower                         +-----------+
+                      /\                               | ENTRY     |
+                     /__\                              |     +-----+----+
+                      ||                               |     | HALL     |
+                    __||__                             +-----+----+    |
+                   /  ||  \                                  |         |
+                  /___||___\                              +---+---+ +---+---+
+                                                             |CRYPT | |WELL  |
+                                                             +---+---+ +---+---+
+                                                                 |
+                                                              +--+--+
+                                                              | ??? |
+                                                              +-----+
+
+[DUNGEON] underground layer rendered
+[DUNGEON] room ??? refuses label
+[PARTY] marker represented by courage, not coordinates
+[NOTE] theater mode later will make maps like this animate harder
+
+======================================================================
+FRAME 0012 :: hidden trail appears
+======================================================================
+
+          hidden trail
+          . . . . . . . . . . . . .
+         .                           .
+        .       ^       ^       ^     .
+       .       /|\     /|\     /|\     .
+      .       /_|_\   /_|_\   /_|_\     .
+     .                                   .
+      . . . . . . . . . . . . . . . . .
+                           |
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      ~      silver river     [====] crossing   ~
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+                                    |
+                                  ( @ )
+
+[TRAIL] hidden path revealed by repeated viewing
+[TRAIL] dotted ink intentionally faint
+[FOREST] trees lean away from the trail
+[EASTER] if you noticed this trail, you are the cartographer now
+
+======================================================================
+FRAME 0013 :: weather front moves in
+======================================================================
+
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       ~       STORM FRONT // MOVING EAST TO WEST              ~
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+             ,     ,        ,       ,        ,        ,
+                 ,      ,       ,        ,        ,
+              ^        ^       ^              ^
+             /|\      /|\     /|\            /|\
+            /_|_\    /_|_\   /_|_\          /_|_\
+
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      ~      silver river     [====] crossing   ~
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+                                    |
+                                  ( @ )
+                                    |
+                                  tower
+
+[WEATHER] storm front added
+[WEATHER] map edges curl from rain
+[PARTY] marker sheltered under suspiciously convenient awning
+[INK] blue layer unavailable; using punctuation
+
+======================================================================
+FRAME 0014 :: creature tracks
+======================================================================
+
+             ,     ,        ,       ,        ,        ,
+              ^        ^       ^              ^
+             /|\      /|\     /|\            /|\
+            /_|_\    /_|_\   /_|_\          /_|_\
+
+          claw tracks:   '   '   '     '   '   '
+                         /\  /\  /\    /\  /\  /\
+
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+      ~      silver river     [====] crossing   ~
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+                                    |
+                                  ( @ )
+                                    |
+                                  tower
+
+[TRACKS] large creature path detected
+[TRACKS] direction: toward old mill, then nowhere
+[PARTY] marker pretends confidence
+[EASTER] suspicious sandwich missing from inventory
+
+======================================================================
+FRAME 0015 :: old mill becomes important
+======================================================================
+
+              ___                          /\
+             | []|                        /__\
+             |___|                         ||
+            village                     old mill
+              ||                           ||
+         =====++===========================++=====
+              ||                           ||
+              ||                      ____/  \____
+              ||                     /            \
+              ||                    /  waterwheel  \
+              ||                    \     ()       /
+              ||                     \___________ /
+
+[MILL] waterwheel marker expanded
+[MILL] underfloor hatch added
+[MILL] village road connected to forgotten channel
+[MAP] previous frames now feel suspicious
+
+======================================================================
+FRAME 0016 :: full regional map
+======================================================================
+
+                           N
+                           ^
+                  ^        |        ^            ^
+                 /|\       |       /|\          /|\
+                /_|_\  .---+---.  /_|_\        /_|_\
+                       |       |
+          hidden trail .       |        ruined tower
+          . . . . . . .       |            /\
+         .                    |           /__\
+        .       forest        |            ||
+       .                      |          __||__
+      .                       |         /  ||  \
+       . . . . . . . . .     |        /___||___\
+                              |
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ | ~ ~ ~ ~ ~ ~ ~ ~ ~
+      ~      silver river    [====]    crossing  ~
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ | ~ ~ ~ ~ ~ ~ ~ ~ ~
+                              |
+              ___             |             /\
+             | []|         ===+===         /__\
+             |___|        village road      ||
+                           old mill     waterwheel
+
+[REGION] full surface map assembled
+[REGION] village, forest, river, tower, mill connected
+[QUALITY] premium starter sequence nearly complete
+[PARTY] marker temporarily hidden for final reveal
+
+======================================================================
+FRAME 0017 :: final reveal marker
+======================================================================
+
+                           N
+                           ^
+                  ^        |        ^            ^
+                 /|\       |       /|\          /|\
+                /_|_\  .---+---.  /_|_\        /_|_\
+                       |       |
+          hidden trail .       |        ruined tower
+          . . . . . . .       |            /\
+         .                    |           /__\
+        .       forest        |            ||
+       .                      |          __||__
+      .                       |         /  ||  \
+       . . . . . . . . .     |        /___||___\
+                              |
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ | ~ ~ ~ ~ ~ ~ ~ ~ ~
+      ~      silver river    [====]    crossing  ~
+       ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ | ~ ~ ~ ~ ~ ~ ~ ~ ~
+                              |
+              ___             |             /\
+             | []|         ===+===         /__\
+             |___|           ( @ )          ||
+                         party returns   old mill
+
+[REVEAL] party marker returned to village road
+[REVEAL] map now contains everything needed for the next expedition
+[EASTER] suspicious sandwich found in mill attic
+[READY] preparing parchment rewind
+
+======================================================================
+FRAME 0018 :: parchment rewind
+======================================================================
+
+[REWIND] storm front fades into margin notes
+[REWIND] creature tracks become apostrophes
+[REWIND] dungeon layer folds under tower
+[REWIND] hidden trail erases itself dot by dot
+[REWIND] river drains into a single tilde
+[REWIND] old mill shrinks back to two roof lines
+[REWIND] village returns to a square
+[REWIND] compass remains
+
+                           N
+                           ^
+                           |
+                     W <---+---> E
+                           |
+                           v
+                           S
+
+[LOOP] Living Map Starter will now redraw the region from first ink
+[LOOP] watch again for the hidden trail and the missing sandwich
+[LOOP] no real actions were performed
