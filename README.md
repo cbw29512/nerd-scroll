@@ -1,33 +1,55 @@
 # Nerd Scroll
 
-Nerd Scroll turns any dropped text, code, or log file into a human-typing terminal stream.
+Nerd Scroll turns pasted text, code, logs, or notes into a cinematic terminal typing stream.
 
-## Two-step workflow
+## Windows GUI workflow
 
-1. Drop a supported file into `1_DROP_TEXT_FILE_HERE/`.
-2. Double-click `2_RUN_NERD_SCROLL.bat`.
+1. Double-click `2_RUN_NERD_SCROLL.bat`.
+2. Paste text into the window.
+3. Pick a speed.
+4. Click **Start Nerd Scroll**.
+5. A command-line window opens and types your text forever.
 
-Nerd Scroll automatically picks the newest supported file in the drop folder and types it into the command line. When it reaches the end, it loops back to the top.
+Stop the stream with `Ctrl+C` or by closing the command-line window.
 
-## Supported files
+## Speed choices
 
-`.txt`, `.log`, `.md`, `.py`, `.js`, `.ts`, `.ps1`, `.json`, `.sql`, `.html`, `.css`, `.xml`, `.yaml`, `.yml`, `.cbl`, `.jcl`
+- Super slow
+- Slow
+- Normal - human typing speed
+- Fast
+- Really fast
+- Ludicrous speed
 
-## Stop
+## Desktop shortcut
 
-Press `Ctrl+C` in the command window.
+Run:
+
+```powershell
+.\INSTALL_DESKTOP_SHORTCUT.bat
+```
+
+This creates a `Nerd Scroll` desktop shortcut.
+
+## Legacy drop-zone mode
+
+The original drop-zone workflow is still available:
+
+```powershell
+.\RUN_DROP_ZONE_LEGACY.bat
+```
 
 ## Safety
 
-Nerd Scroll reads dropped files as text only. It does not execute dropped code, use the internet, run Git, run Docker, install packages, publish anything, or touch credentials.
+Nerd Scroll reads pasted/dropped text only. It does not execute pasted code, use the internet, run Git, run Docker, install packages, publish anything, or touch credentials.
 
-## Developer test
+## Developer tests
 
 ```powershell
-python _nerd_scroll_app/run_tests.py
-python _nerd_scroll_app/start_nerd_scroll.py --root . --drop-zone --max-lines 30 --instant
+python _nerd_scroll_app\run_tests.py
+python _nerd_scroll_app\runner_cli.py --source 1_DROP_TEXT_FILE_HERE\example_to_replace.txt --speed ludicrous --max-lines 5 --instant
 ```
 
 ## Version
 
-Current release: `v0.3.0-two-step`
+Current release: `v0.5.0-windows-gui`
