@@ -1,0 +1,81 @@
+# title: Free Cyber City Starter
+# recommended_speed: slow
+# license: free starter pack for Nerd Scroll users
+
+[BOOT] cyber city renderer online
+[BOOT] glyph atlas loaded
+[BOOT] terminal canvas expanding
+
+FRAME 0001 :: city seed
+
+                 .
+                / \
+               /___\
+                 |
+                [#]
+
+[DRAW] tower spine locked
+[DRAW] scanning for skyline anchors
+
+FRAME 0002 :: skyline grows
+
+                 .
+                /|\
+               /_|_\
+                 |
+                [#]
+               [# #]
+              [# # #]
+
+     __      __      __      __
+    |[]|    |{}|    |<>|    |##|
+    |[]|____|{}|____|<>|____|##|
+    |__|    |__|    |__|    |__|
+
+[WEATHER] neon rain expected
+[GRID] underground signal detected
+
+FRAME 0003 :: rain begins
+
+       |        |       |       |
+          |        |       |
+                 .
+                /|\
+             __/ | \__
+            /____|____\
+                 |
+                [#]
+               [# #]
+              [# # #]
+
+     __      __      __      __
+    |[]|    |{}|    |<>|    |##|
+    |[]|____|{}|____|<>|____|##|
+    |__|    |__|    |__|    |__|
+ =======\______/========\______/=======
+
+[PORTAL] moon object compiling
+[PORTAL] inner ring opening
+
+FRAME 0004 :: machine moon
+
+             .-""""""""-.
+          .-'            '-.
+        .'    ___----___    '.
+       /    .'  _    _  '.    \
+      |    /   (o)  (o)   \    |
+      |    |      __      |    |
+       \    '.  \____/  .'    /
+        '.     '------'     .'
+          '-.____________.-'
+                 / | \
+                /  |  \
+
+     __      __      __      __
+    |[]|    |{}|    |<>|    |##|
+    |[]|____|{}|____|<>|____|##|
+    |__|    |__|    |__|    |__|
+
+[ALERT] machine moon returned gaze
+[ALERT] still cosmetic, still safe
+[LOOP] rewind sequence begins
