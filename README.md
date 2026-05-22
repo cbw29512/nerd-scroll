@@ -5,23 +5,30 @@ Nerd Scroll turns pasted text, code, logs, notes, and reusable source packs into
 ## Windows GUI workflow
 
 1. Double-click `2_RUN_NERD_SCROLL.bat`.
-2. Paste text into the window, or load a saved pack.
+2. Paste text, load a saved pack, or drop a pack file into the window.
 3. Pick a speed.
 4. Click **Start Nerd Scroll**.
 5. A command-line window opens and types your text forever.
 
 Stop the stream with `Ctrl+C` or by closing the command-line window.
 
-## Pack library workflow
+## Pack workflow
 
-1. Put `.txt`, `.md`, `.log`, or `.nscroll` pack files into `3_DROP_PACKS_HERE/`.
-2. Open Nerd Scroll.
-3. Click **Import Drop Folder**.
-4. Pick the saved pack from the dropdown.
-5. Click **Load Pack**.
-6. Click **Start Nerd Scroll**.
+Users can add packs three ways:
 
-Imported packs are copied into your local AppData pack library for easy reuse.
+1. **Drag and drop:** drag a `.txt`, `.md`, `.log`, or `.nscroll` pack into the Nerd Scroll window.
+2. **Add Pack File:** click **Add Pack File...** and choose a pack from Downloads.
+3. **Drop folder:** put packs into `3_DROP_PACKS_HERE/`, then click **Import Drop Folder**.
+
+Imported packs are copied into your local AppData pack library for easy reuse. After import, choose the pack from the dropdown and click **Load Pack**.
+
+True drag-and-drop requires the optional drag-drop helper. Run this once:
+
+```powershell
+.\INSTALL_DRAG_DROP_SUPPORT.bat
+```
+
+If that is not installed, Nerd Scroll still works with **Add Pack File...** and **Import Drop Folder**.
 
 Pack files can include optional metadata at the top:
 
@@ -72,4 +79,4 @@ python _nerd_scroll_app\runner_cli.py --source 1_DROP_TEXT_FILE_HERE\example_to_
 
 ## Version
 
-Current release: `v0.6.0-pack-library`
+Current release: `v0.7.0-pack-drop-ux`
