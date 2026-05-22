@@ -1,0 +1,45 @@
+name: Build Windows Installer
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '_nerd_scroll_app/**'
+      - 'bundled_packs/**'
+      - 'installer/**'
+      - 'build/**'
+      - 'requirements-build.txt'
+      - '.github/workflows/build-windows-installer.yml'
+
+jobs:
+  build-installer:
+    name: Build Nerd Scroll installer
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Inno Setup
+        shell: powershell
+        run: |
+          choco install innosetup -y
+
+      - name: Build installer
+        shell: powershell
+        run: |
+          powershell -ExecutionPolicy Bypass -File .\build\build_windows_installer.ps1
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NerdScrollSetup-v0.9.0
+          path: release/NerdScrollSetup-v0.9.0.exe
+          if-no-files-found: error
