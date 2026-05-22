@@ -21,7 +21,7 @@ ANSI = {
 
 
 class TerminalWriter:
-    """Render text with a human-like typing effect."""
+    """Render text with human typing or zero-delay flood mode."""
 
     def __init__(self, typing: TypingSettings, display: DisplaySettings, instant: bool = False) -> None:
         self.typing = typing
@@ -34,7 +34,7 @@ class TerminalWriter:
             color = ANSI.get(self.display.theme, ANSI["green"])
             reset = ANSI["reset"]
 
-            if self.instant:
+            if self.instant or self._is_flood_mode():
                 print(f"{color}{text}{reset}")
                 return len(text)
 
@@ -54,6 +54,19 @@ class TerminalWriter:
         except Exception:
             logger.exception("failed while writing terminal line")
             raise
+
+    def _is_flood_mode(self) -> bool:
+        """Return true when a profile should render full lines immediately."""
+        try:
+            return (
+                self.typing.base_delay_ms <= 0
+                and self.typing.jitter_ms <= 0
+                and self.typing.line_pause_ms <= 0
+                and not self.typing.enable_typos
+            )
+        except Exception:
+            logger.exception("failed to evaluate flood mode")
+            return False
 
     def _char_delay(self, char: str) -> float:
         """Calculate a human-ish delay for each typed character."""
