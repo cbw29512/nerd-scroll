@@ -1,0 +1,180 @@
+# title: Mainframe Ops Starter
+# recommended_speed: normal
+# category: mainframe batch example
+# creator: Nerd Scroll
+# license: included starter pack
+# render_mode: scroll
+# notes: IBM z/OS-inspired ambience; fictional data; not affiliated with or endorsed by IBM
+
+
+======================================================================
+NIGHT BATCH WINDOW // OPERATIONS CONSOLE
+======================================================================
+
+  NODE: ZOS1        LPAR: PROD        JES2: ACTIVE        SHIFT: NIGHT
+  MODE: VISUAL      PACK: STARTER     SAFE: TEXT ONLY
+
+  +--------------------------------------------------------------+
+  | COMMAND ===>                                                 |
+  |                                                              |
+  | F1=HELP  F3=END  F5=RFIND  F8=DOWN  F10=LEFT  F11=RIGHT      |
+  +--------------------------------------------------------------+
+
+SDSF STATUS DISPLAY ALL CLASSES                        LINE 1-10 (10)
+COMMAND INPUT ===>                                            SCROLL ===> CSR
+
+NP   JOBNAME   JobID     Owner    Prty Queue      C Pos  SAff  ASys Status
+     PAYRLD01  JOB08421  PAYOPS   8    EXECUTION  A 113  ZOS1  ZOS1 ACTIVE
+     CUSTEXT   JOB08422  APPSVC   7    INPUT      B 024  ZOS1  ZOS1 AWAITING
+     VSAMLOAD  JOB08423  BATCH    6    OUTPUT     A 002  ZOS1  ZOS1 HELD
+     DB2REORG  JOB08424  DB2ADM   9    EXECUTION  A 004  ZOS1  ZOS1 ACTIVE
+     CICSLOG   STC08425  CICS     8    EXECUTION  S 001  ZOS1  ZOS1 ACTIVE
+     MQMON     STC08426  MQOPS    8    EXECUTION  S 002  ZOS1  ZOS1 ACTIVE
+
+======================================================================
+JCL // PAYROLL EXTRACT
+======================================================================
+
+//PAYRLD01 JOB (ACCT),'PAYROLL EXTRACT',CLASS=A,MSGCLASS=X,
+//             MSGLEVEL=(1,1),NOTIFY=&SYSUID,REGION=0M
+//*
+//*  FICTIONAL NERD SCROLL MAINFRAME PACK
+//*  VISUAL ONLY - DO NOT SUBMIT TO A REAL SYSTEM
+//*
+//JCLLIB   JCLLIB ORDER=(PROD.PROCLIB,UTIL.PROCLIB)
+//SETVARS  SET RUNDATE='20260522'
+//STEP010  EXEC PGM=IEFBR14
+//ALLOC1   DD  DSN=WORK.PAYROLL.EXTRACT.&RUNDATE,
+//             DISP=(NEW,CATLG,DELETE),
+//             UNIT=SYSDA,SPACE=(CYL,(20,10),RLSE),
+//             DCB=(RECFM=FB,LRECL=120,BLKSIZE=0)
+//STEP020  EXEC PGM=IDCAMS,COND=(0,NE,STEP010)
+//SYSPRINT DD  SYSOUT=*
+//INFILE   DD  DSN=PROD.PAYROLL.MASTER,DISP=SHR
+//OUTFILE  DD  DSN=WORK.PAYROLL.EXTRACT.&RUNDATE,DISP=SHR
+//SYSIN    DD  *
+  REPRO INFILE(INFILE) OUTFILE(OUTFILE)
+/*
+
+$HASP100 PAYRLD01 ON INTRDR
+$HASP373 PAYRLD01 STARTED - INIT A - CLASS A - SYS ZOS1
+IEF403I PAYRLD01 - STARTED - TIME=22.14.11
+IEF236I ALLOC. FOR PAYRLD01 STEP010
+IEF237I 0A91 ALLOCATED TO ALLOC1
+IEF142I PAYRLD01 STEP010 - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   WORK.PAYROLL.EXTRACT.20260522        CATALOGED
+IEF236I ALLOC. FOR PAYRLD01 STEP020
+IDC0005I NUMBER OF RECORDS PROCESSED WAS 00018432
+IDC0001I FUNCTION COMPLETED, HIGHEST CONDITION CODE WAS 0
+IEF404I PAYRLD01 - ENDED - TIME=22.14.22
+$HASP395 PAYRLD01 ENDED - RC=0000
+
+======================================================================
+COBOL // ACCOUNT BALANCE CHECK
+======================================================================
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ACCTBAL.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT ACCT-IN ASSIGN TO ACCTIN.
+           SELECT AUDIT-OUT ASSIGN TO AUDOUT.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  ACCT-IN.
+       01  ACCT-REC.
+           05 ACCT-NO              PIC X(12).
+           05 ACCT-TYPE            PIC X(02).
+           05 ACCT-BALANCE         PIC S9(9)V99 COMP-3.
+
+       WORKING-STORAGE SECTION.
+       01  WS-COUNT                PIC 9(09) VALUE ZERO.
+       01  WS-TOTAL                PIC S9(11)V99 COMP-3 VALUE ZERO.
+
+       PROCEDURE DIVISION.
+       0000-MAIN.
+           OPEN INPUT ACCT-IN
+           PERFORM UNTIL 1 = 2
+              READ ACCT-IN
+                 AT END EXIT PERFORM
+                 NOT AT END
+                    ADD 1 TO WS-COUNT
+                    ADD ACCT-BALANCE TO WS-TOTAL
+              END-READ
+           END-PERFORM
+           DISPLAY 'ACCOUNTS READ: ' WS-COUNT
+           CLOSE ACCT-IN
+           GOBACK.
+
+//COBOLC   JOB (ACCT),'COBOL COMPILE',CLASS=A,MSGCLASS=X
+//COMPILE  EXEC PGM=IGYCRCTL,PARM='LIST,MAP,RENT,APOST'
+//SYSIN    DD  DSN=DEV.COBOL.SOURCE(ACCTBAL),DISP=SHR
+//SYSPRINT DD  SYSOUT=*
+
+IGYOS4000-I   COBOL COMPILER OPTIONS IN EFFECT: LIST MAP RENT APOST
+IGYDS1089-S   INVALID NUMERIC DATA WAS DETECTED IN A SIMULATED RECORD
+IGYSC0200-I   END OF COMPILATION 1, PROGRAM ACCTBAL, HIGHEST SEVERITY 12
+
+======================================================================
+ABEND TRIAGE // S0C7 AND SB37
+======================================================================
+
+$HASP373 ACCTBALX STARTED - INIT B - CLASS A - SYS ZOS1
+CEE3207S The system detected a data exception.
+IEF450I ACCTBALX STEP030 - ABEND=S0C7 U0000 REASON=00000000
+IEA995I SYMPTOM DUMP OUTPUT  SYSTEM COMPLETION CODE=0C7
+        PSW AT TIME OF ERROR  078D2000   80013F2A  ILC 4  INTC 07
+        ACTIVE MODULE           ACCTBAL
+        OFFSET                  +000013F2
+
+$HASP373 CUSTLOAD STARTED - INIT C - CLASS A - SYS ZOS1
+IEC030I B37-04,IFG0554A,CUSTLOAD,LOAD010,SORTOUT,0A92,WRK002,
+        WORK.CUST.TRANSACT.SORTED
+IEF450I CUSTLOAD LOAD010 - ABEND=SB37 U0000 REASON=00000004
+$HASP395 CUSTLOAD ENDED - ABEND=SB37
+
+======================================================================
+REXX // TSO HELPER
+======================================================================
+
+/* REXX */
+parse upper arg jobprefix
+if jobprefix = '' then jobprefix = 'PAY'
+say 'NERD SCROLL REXX OPS HELPER'
+say 'SCANNING JOB PREFIX:' jobprefix
+address TSO
+"PROFILE MSGID"
+"LISTDS 'PROD.PAYROLL.MASTER' STATUS"
+if rc <> 0 then do
+  say 'DATASET STATUS CHECK RETURN CODE:' rc
+end
+else do
+  say 'DATASET STATUS CHECK COMPLETE'
+end
+exit 0
+
+READY
+TSO LISTDS 'PROD.PAYROLL.MASTER' STATUS
+DATASET PROD.PAYROLL.MASTER IS IN CATALOG SYS1.MCAT
+DATASET STATUS CHECK COMPLETE
+
+======================================================================
+END OF WINDOW
+======================================================================
+
++------------------------------------------------------------------------+
+| NIGHTLY MAINFRAME WINDOW                              VISUAL SUMMARY    |
+|------------------------------------------------------------------------|
+| PAYRLD01     PAYROLL EXTRACT              RC=0000       COMPLETE       |
+| COBOLC       COBOL COMPILE                SEV=0012      REVIEW         |
+| ACCTBALX     COBOL DATA CHECK             S0C7          TRIAGED        |
+| CUSTLOAD     CUSTOMER LOAD                SB37          SPACE FIX      |
+| REXXMON      TSO HELPER                   RC=0000       COMPLETE       |
++------------------------------------------------------------------------+
+
+$HASP395 NIGHTWIN ENDED - RC=0000
+
+LOOPING BACK TO OPERATIONS CONSOLE...
