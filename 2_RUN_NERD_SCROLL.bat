@@ -1,29 +1,16 @@
 @echo off
-title Nerd Scroll - Two Step Edition
+title Nerd Scroll
 cd /d "%~dp0"
-
-echo ============================================================
-echo NERD SCROLL
-echo ============================================================
-echo.
-echo STEP 1 folder:
-echo   %~dp01_DROP_TEXT_FILE_HERE
-echo.
-echo STEP 2:
-echo   This launcher is running Nerd Scroll now.
-echo.
-echo Stop anytime with Ctrl+C.
-echo.
 
 where python >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
-    python "_nerd_scroll_app\start_nerd_scroll.py" --root . --drop-zone
+    python "_nerd_scroll_app\gui_launcher.py" --root .
     goto done
 )
 
 where py >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
-    py "_nerd_scroll_app\start_nerd_scroll.py" --root . --drop-zone
+    py "_nerd_scroll_app\gui_launcher.py" --root .
     goto done
 )
 
@@ -39,6 +26,3 @@ pause
 exit /b 1
 
 :done
-echo.
-echo Nerd Scroll closed.
-pause
