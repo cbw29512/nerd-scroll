@@ -11,6 +11,7 @@ from nerd_scroll.app_paths import app_data_dir
 logger = logging.getLogger("nerd_scroll.pack_library")
 ALLOWED_PACK_EXTENSIONS = {".txt", ".log", ".md", ".nscroll"}
 DROP_FOLDER_NAME = "3_DROP_PACKS_HERE"
+BUNDLED_PACK_FOLDER_NAME = "bundled_packs"
 
 
 @dataclass(frozen=True)
@@ -34,6 +35,36 @@ def pack_drop_dir(app_root: Path) -> Path:
     path = app_root / DROP_FOLDER_NAME
     path.mkdir(parents=True, exist_ok=True)
     return path
+
+
+def bundled_pack_dir(app_root: Path) -> Path:
+    """Return the bundled starter-pack folder shipped with the app."""
+    return app_root / BUNDLED_PACK_FOLDER_NAME
+
+
+def seed_bundled_packs(app_root: Path) -> list[PackItem]:
+    """Copy bundled starter packs into the user's saved library once."""
+    seeded: list[PackItem] = []
+    try:
+        folder = bundled_pack_dir(app_root)
+        if not folder.exists():
+            return seeded
+
+        library = pack_library_dir()
+        existing_names = {path.name.lower() for path in library.iterdir() if path.is_file()}
+
+        for source in sorted(folder.iterdir()):
+            if source.suffix.lower() not in ALLOWED_PACK_EXTENSIONS:
+                continue
+            if source.name.lower() in existing_names:
+                continue
+            target = library / source.name
+            shutil.copy2(source, target)
+            seeded.append(pack_from_path(target))
+        return seeded
+    except Exception:
+        logger.exception("failed to seed bundled packs")
+        raise
 
 
 def import_pack_file(source: Path) -> PackItem:
