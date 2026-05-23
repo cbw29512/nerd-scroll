@@ -1,5 +1,5 @@
 #define MyAppName "Nerd Scroll"
-#define MyAppVersion "0.9.0"
+#define MyAppVersion "1.0.0"
 #define MyAppPublisher "Nerd Scroll"
 #define MyAppExeName "NerdScroll.exe"
 

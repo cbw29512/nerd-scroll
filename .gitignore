@@ -10,3 +10,11 @@ env/
 Thumbs.db
 _patch_backups/
 _nerd_scroll_runtime/
+
+# Build outputs
+build-check.txt
+NerdScroll.spec
+NerdScrollRunner.spec
+build/pyinstaller/
+dist/
+release/

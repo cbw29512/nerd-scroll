@@ -12,7 +12,7 @@ Create a Windows installer that a customer can download, run, and use without op
 ## Output
 
 ```text
-release/NerdScrollSetup-v0.9.0.exe
+release/NerdScrollSetup-v1.0.0.exe
 ```
 
 ## Required Local Tools

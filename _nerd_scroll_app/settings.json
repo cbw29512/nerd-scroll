@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Nerd Scroll",
-    "version": "0.5.0",
+    "version": "1.0.0",
     "safe_mode": true
   },
   "typing": {
@@ -14,7 +14,24 @@
   "source": {
     "loop_forever": true,
     "skip_empty_lines": false,
-    "allowed_extensions": [".txt", ".log", ".md", ".py", ".js", ".ts", ".ps1", ".json", ".sql", ".html", ".css", ".xml", ".yaml", ".yml", ".cbl", ".jcl"]
+    "allowed_extensions": [
+      ".txt",
+      ".log",
+      ".md",
+      ".py",
+      ".js",
+      ".ts",
+      ".ps1",
+      ".json",
+      ".sql",
+      ".html",
+      ".css",
+      ".xml",
+      ".yaml",
+      ".yml",
+      ".cbl",
+      ".jcl"
+    ]
   },
   "drop_zone": {
     "folder_path": "1_DROP_TEXT_FILE_HERE",

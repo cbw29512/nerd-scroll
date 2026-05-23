@@ -9,7 +9,7 @@ try {
     # - dist/NerdScrollApp/NerdScroll.exe
     # - dist/NerdScrollApp/NerdScrollRunner.exe
     # - dist/NerdScrollApp/bundled_packs/*
-    # - release/NerdScrollSetup-v0.9.0.exe
+    # - release/NerdScrollSetup-v1.0.0.exe
     # -----------------------------
 
     $RepoDir = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
@@ -17,7 +17,7 @@ try {
     $StageDir = Join-Path $DistDir "NerdScrollApp"
     $ReleaseDir = Join-Path $RepoDir "release"
     $BuildDir = Join-Path $RepoDir "build\pyinstaller"
-    $Iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+    $Iscc = "C:\Users\dmchris\AppData\Local\Programs\Inno Setup 6\ISCC.exe"
 
     Write-Host "Nerd Scroll installer build starting..." -ForegroundColor Cyan
     Write-Host "Repo: $RepoDir" -ForegroundColor DarkCyan
@@ -135,7 +135,7 @@ Nerd Scroll reads text only. It does not execute pack text.
         throw "Inno Setup build failed."
     }
 
-    $Installer = Join-Path $ReleaseDir "NerdScrollSetup-v0.9.0.exe"
+    $Installer = Join-Path $ReleaseDir "NerdScrollSetup-v1.0.0.exe"
     if (-not (Test-Path $Installer)) {
         throw "Installer was not created: $Installer"
     }
